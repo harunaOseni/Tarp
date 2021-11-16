@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from PIL  import ImageTk, Image
+from PIL import ImageTk, Image
 
 artist_login_page = Tk()
 artist_login_page.title("Tarp (Make Beautiful Art)")
@@ -11,12 +11,15 @@ artist_login_page.configure(background='white')
 app_logo = ImageTk.PhotoImage(Image.open("images/logo.jpg"))
 artist_login_page.iconphoto(False, app_logo)
 
-#App artist log in page user interface program
-tarp_logo_label_resize = ImageTk.PhotoImage(Image.open("images/logo.jpg").resize((700, 300), Image.ANTIALIAS))
-tarp_logo_label = Label(artist_login_page, image=tarp_logo_label_resize, bg='white')
+# App artist log in page user interface program
+tarp_logo_label_resize = ImageTk.PhotoImage(Image.open(
+    "images/logo.jpg").resize((700, 300), Image.ANTIALIAS))
+tarp_logo_label = Label(
+    artist_login_page, image=tarp_logo_label_resize, bg='white')
 tarp_logo_label.grid(row=0, column=0)
 
-#sign in form
-tarp_label = Label(artist_login_page, text="Sign in", font=("Helvetica", 20), bg='white')
+#frame for sign in consitituents
+sign_in_frame = Frame(bg='black', width=650, height=350)
+sign_in_frame.grid(row=1, column=0, columnspan=2)
 
 artist_login_page.mainloop()
