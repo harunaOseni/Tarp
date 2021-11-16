@@ -1,12 +1,16 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import ImageTk, Image
+from database import Database
 
 # getting started
 artist_login_page = Tk()
 artist_login_page.title("Tarp (Make Beautiful Art)")
 artist_login_page.geometry("700x700")
 artist_login_page.configure(background='white')
+
+#initialize database
+db = Database("tarp.db")
 
 # App icon
 app_logo = ImageTk.PhotoImage(Image.open("images/logo.jpg"))
@@ -43,7 +47,7 @@ password_entry.grid(row=3, column=1, padx=10, pady=10)
 
 # sign in button
 sign_in_button = Button(sign_in_frame, text="Tarp In!", width=25,
-                        bg='gray', fg='black', command="A command goes in here")
+                        bg='gray', fg='black', command=lambda: db.register_user(name_entry.get(), password_entry.get()))
 sign_in_button.grid(row=4, column=1, padx=10, pady=10)
 
 artist_login_page.mainloop()
