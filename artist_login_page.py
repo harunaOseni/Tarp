@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 from PIL import ImageTk, Image
 from database import Database
 
@@ -9,8 +10,27 @@ artist_login_page.title("Tarp (Make Beautiful Art)")
 artist_login_page.geometry("700x700")
 artist_login_page.configure(background='white')
 
-#initialize database
+# initialize database
 db = Database("tarp.db")
+
+# functions for app
+
+
+def register_and_validate_user(username, password):
+    user_name = username.get()
+    user_password = password.get()
+    if user_name == "" or user_password == "":
+        messagebox.showerror("Error", "Please enter a username and password")
+    else:
+        if db.fetch_user(user_name, user_password):
+            messagebox.showinfo("Success", "You are now logged in")
+        else:
+            db.register_user(user_name, user_password)
+            messagebox.showinfo("Success", "You are now registered")
+            # hide everything and show the main page
+            artist_login_page.withdraw()
+            
+
 
 # App icon
 app_logo = ImageTk.PhotoImage(Image.open("images/logo.jpg"))
@@ -47,7 +67,7 @@ password_entry.grid(row=3, column=1, padx=10, pady=10)
 
 # sign in button
 sign_in_button = Button(sign_in_frame, text="Tarp In!", width=25,
-                        bg='gray', fg='black', command=lambda: db.register_user(name_entry.get(), password_entry.get()))
+                        bg='gray', fg='black', command=lambda: register_and_validate_user(name_entry, password_entry))
 sign_in_button.grid(row=4, column=1, padx=10, pady=10)
 
 artist_login_page.mainloop()
