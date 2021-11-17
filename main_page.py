@@ -5,8 +5,9 @@ from PIL import ImageTk, Image
 from database import Database
 
 
-# getting started
-main_page = Tk()
+def main(): 
+    # getting started
+    main_page = Tk()
 
 
 
@@ -26,5 +27,5 @@ main_page = Tk()
 
 
 
-#keep main_page window open
-main_page.mainloop()
+    #keep main_page window open
+    return main_page.mainloop()

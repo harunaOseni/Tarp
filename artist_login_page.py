@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from PIL import ImageTk, Image
 from database import Database
+from main_page import main
 
 # getting started
 artist_login_page = Tk()
@@ -24,12 +25,14 @@ def register_and_validate_user(username, password):
     else:
         if db.fetch_user(user_name, user_password):
             messagebox.showinfo("Success", "You are now logged in")
+            artist_login_page.destroy()
+            main()
         else:
             db.register_user(user_name, user_password)
             messagebox.showinfo("Success", "You are now registered")
             # hide everything and show the main page
-            artist_login_page.withdraw()
-            
+            artist_login_page.destroy()
+            main()
 
 
 # App icon
