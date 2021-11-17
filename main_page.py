@@ -8,6 +8,9 @@ from database import Database
 def main(): 
     # getting started
     main_page = Tk()
+    main_page.title("Tarp (Make Beautiful Art)")
+    main_page.geometry("700x700")
+    
 
 
 
