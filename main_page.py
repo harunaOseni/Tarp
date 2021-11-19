@@ -4,9 +4,6 @@ from tkinter import messagebox
 from PIL import ImageTk, Image
 from database import Database
 
-#toggle paint on and off
-paint_on = True
-
 
 def main():
     # getting started
@@ -24,34 +21,24 @@ def main():
     top_frame.place(anchor="n", relx=0.5, rely=0.01, width=680, height=70)
 
     def paint(event):
-        if paint_on:
-            brush_width = 5
 
-            # starting position
-            x1 = event.x - 1
-            y1 = event.y - 1
+        brush_width = 5
 
-            # ending position
-            x2 = event.x + 1
-            y2 = event.y + 1
+        # starting position
+        x1 = event.x - 1
+        y1 = event.y - 1
 
-            # drawing the line
-            canvas.create_line(x1, y1, x2, y2, fill="black",
-                               width=brush_width, smooth=TRUE)
-        else:
-            pass
+        # ending position
+        x2 = event.x + 1
+        y2 = event.y + 1
 
-    def turn_on_off_paint():
-        global paint_on
-        if paint_on:
-            paint_on = False
-        else:
-            paint_on = True
+        # drawing the line
+        canvas.create_line(x1, y1, x2, y2, fill="black", width=brush_width, smooth=TRUE)
 
     # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
     paint_img_button = Button(
-        top_frame, image=paint_btn, bg="#E1E8ED", command=turn_on_off_paint)
+        top_frame, image=paint_btn, bg="#E1E8ED", command="function")
     paint_img_button.place(x=5, y=11)
     brush_size_btn = PhotoImage(file="icon/brush_size.png")
     brush_size_img_button = Button(
