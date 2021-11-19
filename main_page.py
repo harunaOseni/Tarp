@@ -57,6 +57,14 @@ def main():
     import_img_button = Button(
         top_frame, image=import_btn, bg="#E1E8ED", command="function")
     import_img_button.place(x=500, y=11)
+    open_btn = PhotoImage(file="icon/open.png")
+    open_img_button = Button(
+        top_frame, image=open_btn, bg="#E1E8ED", command="function")
+    open_img_button.place(x=555, y=11)
+    save_btn = PhotoImage(file="icon/save.png")
+    save_img_button = Button(
+        top_frame, image=save_btn, bg="#E1E8ED", command="function")
+    save_img_button.place(x=610, y=11, width=64)
 
     # canvas for artist to paint
     canvas = Canvas(main_page, width=680, height=500,
