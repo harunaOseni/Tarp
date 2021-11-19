@@ -20,6 +20,21 @@ def main():
     top_frame = Frame(main_page, bg="#E1E8ED")
     top_frame.place(anchor="n", relx=0.5, rely=0.01, width=680, height=70)
 
+    def paint(event):
+
+        brush_width = 5
+
+        # starting position
+        x1 = event.x - 1
+        y1 = event.y - 1
+
+        # ending position
+        x2 = event.x + 1
+        y2 = event.y + 1
+
+        # drawing the line
+        canvas.create_line(x1, y1, x2, y2, fill="black", width=brush_width, smooth=TRUE)
+
     # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
     paint_img_button = Button(
@@ -70,6 +85,7 @@ def main():
     canvas = Canvas(main_page, width=680, height=500,
                     bg='white', borderwidth=2, relief='ridge')
     canvas.place(anchor="n", relx=0.5, rely=0.12, width=680, height=600)
+    canvas.bind("<B1-Motion>", paint)
 
     # keep main_page window open
     return main_page.mainloop()
