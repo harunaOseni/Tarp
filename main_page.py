@@ -24,11 +24,15 @@ def main():
     paint_btn = PhotoImage(file="icon/pencil.png")
     paint_img_button = Button(
         top_frame, image=paint_btn, bg="#E1E8ED", command="function")
-    paint_img_button.place(x=5, y=11) 
+    paint_img_button.place(x=5, y=11)
     brush_size_btn = PhotoImage(file="icon/brush_size.png")
     brush_size_img_button = Button(
         top_frame, image=brush_size_btn, bg="#E1E8ED", command="function")
     brush_size_img_button.place(x=60, y=11)
+    brush_color_btn = PhotoImage(file="icon/brush_color.png")
+    brush_color_img_button = Button(
+        top_frame, image=brush_color_btn, bg="#E1E8ED", command="function")
+    brush_color_img_button.place(x=115, y=11)
 
     # canvas for artist to paint
     canvas = Canvas(main_page, width=680, height=500,
