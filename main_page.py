@@ -33,6 +33,30 @@ def main():
     brush_color_img_button = Button(
         top_frame, image=brush_color_btn, bg="#E1E8ED", command="function")
     brush_color_img_button.place(x=115, y=11)
+    canvas_color_btn = PhotoImage(file="icon/canvas_color.png")
+    canvas_color_button = Button(
+        top_frame, image=canvas_color_btn, bg="#E1E8ED", command="function")
+    canvas_color_button.place(x=170, y=11, width=100)
+    eraser_btn = PhotoImage(file="icon/eraser.png")
+    eraser_img_button = Button(
+        top_frame, image=eraser_btn, bg="#E1E8ED", command="function")
+    eraser_img_button.place(x=280, y=11)
+    undo_btn = PhotoImage(file="icon/undo.png")
+    undo_img_button = Button(
+        top_frame, image=undo_btn, bg="#E1E8ED", command="function")
+    undo_img_button.place(x=335, y=11)
+    redo_btn = PhotoImage(file="icon/redo.png")
+    redo_img_button = Button(
+        top_frame, image=redo_btn, bg="#E1E8ED", command="function")
+    redo_img_button.place(x=390, y=11)
+    clear_btn = PhotoImage(file="icon/clear.png")
+    clear_img_button = Button(
+        top_frame, image=clear_btn, bg="#E1E8ED", command="function")
+    clear_img_button.place(x=445, y=11)
+    import_btn = PhotoImage(file="icon/import.png")
+    import_img_button = Button(
+        top_frame, image=import_btn, bg="#E1E8ED", command="function")
+    import_img_button.place(x=500, y=11)
 
     # canvas for artist to paint
     canvas = Canvas(main_page, width=680, height=500,
