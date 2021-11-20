@@ -22,7 +22,7 @@ def main():
 
     def paint(event):
 
-        brush_width = 5
+        brush_width = brush_size_slider.get()
 
         # starting position
         x1 = event.x - 1
@@ -43,6 +43,13 @@ def main():
             brush_type_frame.place(anchor="n", relx=0.116,
                                    rely=0.005, width=160, height=110)
 
+    def toggle_brush_size_slider_frame():
+        if brush_size_slider_frame.winfo_ismapped():
+            brush_size_slider_frame.place_forget()
+        else:
+            brush_size_slider_frame.place(anchor="n", relx=0.2,
+                                          rely=0.005, width=120, height=110)
+
     # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
     paint_img_button = Button(
@@ -50,7 +57,7 @@ def main():
     paint_img_button.place(x=5, y=11)
     brush_size_btn = PhotoImage(file="icon/brush_size.png")
     brush_size_img_button = Button(
-        top_frame, image=brush_size_btn, bg="#E1E8ED", command="function")
+        top_frame, image=brush_size_btn, bg="#E1E8ED", command=toggle_brush_size_slider_frame)
     brush_size_img_button.place(x=60, y=11)
     brush_color_btn = PhotoImage(file="icon/brush_color.png")
     brush_color_img_button = Button(
@@ -110,6 +117,15 @@ def main():
     brush_type_diamond_btn = Radiobutton(
         brush_type_frame, text="Diamond", variable=brush_type, value="projecting", bg="#E1E8ED")
     brush_type_diamond_btn.place(x=5, y=55)
+
+    # brush_size_slider_frame
+    brush_size_slider_frame = LabelFrame(
+        canvas, text="Brush Size", bg="#E1E8ED")
+    brush_size_slider_frame.place_forget()
+    brush_size_slider = Scale(brush_size_slider_frame, from_=1, to=100, orient=HORIZONTAL,
+                              bg="#E1E8ED")
+    brush_size_slider.place(x=5, y=5)
+
     # keep main_page window open
     return main_page.mainloop()
 
