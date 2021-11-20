@@ -76,15 +76,12 @@ def main():
         brush_color = canvas_color
 
     def undo_last_stroke():
+        global undo_list
         last_item = canvas.find_all()[-1]
         undo_list.append(last_item)
         canvas.delete(last_item)
 
-    def redo_last_stroke():
-        pass
-        
-
-    # top frame tools for painting
+        # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
     paint_img_button = Button(
         top_frame, image=paint_btn, bg="#E1E8ED", command=toggle_brush_type_frame)
@@ -108,11 +105,7 @@ def main():
     undo_btn = PhotoImage(file="icon/undo.png")
     undo_img_button = Button(
         top_frame, image=undo_btn, bg="#E1E8ED", command=undo_last_stroke)
-    undo_img_button.place(x=335, y=11)
-    redo_btn = PhotoImage(file="icon/redo.png")
-    redo_img_button = Button(
-        top_frame, image=redo_btn, bg="#E1E8ED", command=redo_last_stroke)
-    redo_img_button.place(x=390, y=11)
+    undo_img_button.place(x=335, y=11, width=100)
     clear_btn = PhotoImage(file="icon/clear.png")
     clear_img_button = Button(
         top_frame, image=clear_btn, bg="#E1E8ED", command=clear_canvas)
@@ -120,15 +113,11 @@ def main():
     import_btn = PhotoImage(file="icon/import.png")
     import_img_button = Button(
         top_frame, image=import_btn, bg="#E1E8ED", command="function")
-    import_img_button.place(x=500, y=11)
-    open_btn = PhotoImage(file="icon/open.png")
-    open_img_button = Button(
-        top_frame, image=open_btn, bg="#E1E8ED", command="function")
-    open_img_button.place(x=555, y=11)
+    import_img_button.place(x=500, y=11, width=80)
     save_btn = PhotoImage(file="icon/save.png")
     save_img_button = Button(
         top_frame, image=save_btn, bg="#E1E8ED", command="function")
-    save_img_button.place(x=610, y=11, width=64)
+    save_img_button.place(x=590, y=11, width=80)
 
     # canvas for artist to paint
     canvas = Canvas(main_page, width=680, height=500,
