@@ -178,6 +178,3 @@ def main():
 
     # keep main_page window open
     return main_page.mainloop()
-
-
-main()
