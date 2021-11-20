@@ -40,13 +40,13 @@ def main():
         if brush_type_frame.winfo_ismapped():
             brush_type_frame.place_forget()
         else:
-            brush_type_frame.place(anchor="n", relx=0.5,
-                                   rely=0.01, width=680, height=70)
+            brush_type_frame.place(anchor="n", relx=0.116,
+                                   rely=0.005, width=160, height=110)
 
     # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
     paint_img_button = Button(
-        top_frame, image=paint_btn, bg="#E1E8ED", command="function")
+        top_frame, image=paint_btn, bg="#E1E8ED", command=toggle_brush_type_frame)
     paint_img_button.place(x=5, y=11)
     brush_size_btn = PhotoImage(file="icon/brush_size.png")
     brush_size_img_button = Button(
@@ -97,9 +97,8 @@ def main():
 
     # brush_type_frame
     brush_type_frame = LabelFrame(canvas, text="Brush Type", bg="#E1E8ED")
-    brush_type_frame.place(anchor="n", relx=0.116,
-                           rely=0.005, width=160, height=110)
     brush_type = StringVar()
+    brush_type_frame.place_forget()
     brush_type.set("round")
 
     brush_type_round_btn = Radiobutton(
