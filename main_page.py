@@ -1,9 +1,11 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter import messagebox
+from tkinter import messagebox, colorchooser
 from PIL import ImageTk, Image
 from database import Database
 
+#brush_color
+brush_color = 'black'
 
 def main():
     # getting started
@@ -33,7 +35,7 @@ def main():
         y2 = event.y + 1
 
         # drawing the line
-        canvas.create_line(x1, y1, x2, y2, fill="black",
+        canvas.create_line(x1, y1, x2, y2, fill=brush_color,
                            width=brush_width, smooth=TRUE, capstyle=brush_type.get())
 
     def toggle_brush_type_frame():
@@ -50,6 +52,12 @@ def main():
             brush_size_slider_frame.place(anchor="n", relx=0.2,
                                           rely=0.005, width=120, height=110)
 
+    def choose_brush_color():
+        global brush_color
+        brush_color = "black"
+        brush_color = colorchooser.askcolor(
+            title="Choose a color", color=brush_color)[1]
+
     # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
     paint_img_button = Button(
@@ -61,7 +69,7 @@ def main():
     brush_size_img_button.place(x=60, y=11)
     brush_color_btn = PhotoImage(file="icon/brush_color.png")
     brush_color_img_button = Button(
-        top_frame, image=brush_color_btn, bg="#E1E8ED", command="function")
+        top_frame, image=brush_color_btn, bg="#E1E8ED", command=choose_brush_color)
     brush_color_img_button.place(x=115, y=11)
     canvas_color_btn = PhotoImage(file="icon/canvas_color.png")
     canvas_color_button = Button(
