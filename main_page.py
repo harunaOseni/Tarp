@@ -4,8 +4,10 @@ from tkinter import messagebox, colorchooser
 from PIL import ImageTk, Image
 from database import Database
 
-#brush_color
+# brush_color
 brush_color = 'black'
+canvas_color = 'white'
+
 
 def main():
     # getting started
@@ -58,6 +60,13 @@ def main():
         brush_color = colorchooser.askcolor(
             title="Choose a color", color=brush_color)[1]
 
+    def choose_canvas_color():
+        global canvas_color
+        canvas_color = "white"
+        canvas_color = colorchooser.askcolor(
+            title="Choose a color", color=canvas_color)[1]
+        canvas.configure(background=canvas_color)
+
     # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
     paint_img_button = Button(
@@ -73,7 +82,7 @@ def main():
     brush_color_img_button.place(x=115, y=11)
     canvas_color_btn = PhotoImage(file="icon/canvas_color.png")
     canvas_color_button = Button(
-        top_frame, image=canvas_color_btn, bg="#E1E8ED", command="function")
+        top_frame, image=canvas_color_btn, bg="#E1E8ED", command=choose_canvas_color)
     canvas_color_button.place(x=170, y=11, width=100)
     eraser_btn = PhotoImage(file="icon/eraser.png")
     eraser_img_button = Button(
