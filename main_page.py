@@ -67,6 +67,9 @@ def main():
             title="Choose a color", color=canvas_color)[1]
         canvas.configure(background=canvas_color)
 
+    def clear_canvas(): 
+        canvas.delete("all")
+
     # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
     paint_img_button = Button(
@@ -98,7 +101,7 @@ def main():
     redo_img_button.place(x=390, y=11)
     clear_btn = PhotoImage(file="icon/clear.png")
     clear_img_button = Button(
-        top_frame, image=clear_btn, bg="#E1E8ED", command="function")
+        top_frame, image=clear_btn, bg="#E1E8ED", command=clear_canvas)
     clear_img_button.place(x=445, y=11)
     import_btn = PhotoImage(file="icon/import.png")
     import_img_button = Button(
