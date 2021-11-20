@@ -7,6 +7,7 @@ from database import Database
 # brush_color
 brush_color = 'black'
 canvas_color = 'white'
+undo_list = []
 
 
 def main():
@@ -71,9 +72,17 @@ def main():
         canvas.delete("all")
 
     def erase_ink_from_canvas():
-        global brush_color 
-        brush_color = "white"
+        global brush_color
+        brush_color = canvas_color
 
+    def undo_last_stroke():
+        last_item = canvas.find_all()[-1]
+        undo_list.append(last_item)
+        canvas.delete(last_item)
+
+    def redo_last_stroke():
+        pass
+        
 
     # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
@@ -98,11 +107,11 @@ def main():
     eraser_img_button.place(x=280, y=11)
     undo_btn = PhotoImage(file="icon/undo.png")
     undo_img_button = Button(
-        top_frame, image=undo_btn, bg="#E1E8ED", command="function")
+        top_frame, image=undo_btn, bg="#E1E8ED", command=undo_last_stroke)
     undo_img_button.place(x=335, y=11)
     redo_btn = PhotoImage(file="icon/redo.png")
     redo_img_button = Button(
-        top_frame, image=redo_btn, bg="#E1E8ED", command="function")
+        top_frame, image=redo_btn, bg="#E1E8ED", command=redo_last_stroke)
     redo_img_button.place(x=390, y=11)
     clear_btn = PhotoImage(file="icon/clear.png")
     clear_img_button = Button(
