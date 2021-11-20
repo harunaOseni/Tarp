@@ -67,8 +67,13 @@ def main():
             title="Choose a color", color=canvas_color)[1]
         canvas.configure(background=canvas_color)
 
-    def clear_canvas(): 
+    def clear_canvas():
         canvas.delete("all")
+
+    def erase_ink_from_canvas():
+        global brush_color 
+        brush_color = "white"
+
 
     # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
@@ -89,7 +94,7 @@ def main():
     canvas_color_button.place(x=170, y=11, width=100)
     eraser_btn = PhotoImage(file="icon/eraser.png")
     eraser_img_button = Button(
-        top_frame, image=eraser_btn, bg="#E1E8ED", command="function")
+        top_frame, image=eraser_btn, bg="#E1E8ED", command=erase_ink_from_canvas)
     eraser_img_button.place(x=280, y=11)
     undo_btn = PhotoImage(file="icon/undo.png")
     undo_img_button = Button(
