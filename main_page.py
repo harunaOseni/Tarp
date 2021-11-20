@@ -33,7 +33,15 @@ def main():
         y2 = event.y + 1
 
         # drawing the line
-        canvas.create_line(x1, y1, x2, y2, fill="black", width=brush_width, smooth=TRUE)
+        canvas.create_line(x1, y1, x2, y2, fill="black",
+                           width=brush_width, smooth=TRUE)
+
+    def toggle_brush_type_frame():
+        if brush_type_frame.winfo_ismapped():
+            brush_type_frame.place_forget()
+        else:
+            brush_type_frame.place(anchor="n", relx=0.5,
+                                   rely=0.01, width=680, height=70)
 
     # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
@@ -87,6 +95,25 @@ def main():
     canvas.place(anchor="n", relx=0.5, rely=0.12, width=680, height=600)
     canvas.bind("<B1-Motion>", paint)
 
+    # brush_type_frame
+    brush_type_frame = LabelFrame(canvas, text="Brush Type", bg="#E1E8ED")
+    brush_type_frame.place(anchor="n", relx=0.116,
+                           rely=0.005, width=160, height=110)
+    brush_type = StringVar()
+    brush_type.set("round")
+
+    brush_type_round_btn = Radiobutton(
+        brush_type_frame, text="Round", variable=brush_type, value="round", bg="#E1E8ED")
+    brush_type_round_btn.place(x=5, y=5)
+    brush_type_square_btn = Radiobutton(
+        brush_type_frame, text="Square", variable=brush_type, value="square", bg="#E1E8ED")
+    brush_type_square_btn.place(x=5, y=25)
+    brush_type_slash_btn = Radiobutton(
+        brush_type_frame, text="Slash", variable=brush_type, value="butt", bg="#E1E8ED")
+    brush_type_slash_btn.place(x=5, y=45)
+    brush_type_diamond_btn = Radiobutton(
+        brush_type_frame, text="Diamond", variable=brush_type, value="projecting", bg="#E1E8ED")
+    brush_type_diamond_btn.place(x=5, y=65)
     # keep main_page window open
     return main_page.mainloop()
 

@@ -15,8 +15,6 @@ artist_login_page.configure(background='white')
 db = Database("tarp.db")
 
 # functions for app
-
-
 def register_and_validate_user(username, password):
     user_name = username.get()
     user_password = password.get()
