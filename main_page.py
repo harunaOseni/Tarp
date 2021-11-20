@@ -7,6 +7,7 @@ from database import Database
 # brush_color
 brush_color = 'black'
 canvas_color = 'white'
+image_opened = ""
 
 
 def main():
@@ -79,7 +80,8 @@ def main():
         canvas.delete(last_item)
 
     def save_painting():
-        painting = filedialog.asksaveasfilename(initialdir=r'C:\Users\oseni haruna\OneDrive\Pictures\painting', filetypes=(("png files", "*.png"), ("all files", "*.*")))
+        painting = filedialog.asksaveasfilename(initialdir=r'C:\Users\oseni haruna\OneDrive\Pictures\painting', filetypes=(
+            ("png files", "*.png"), ("all files", "*.*")))
 
         if painting.endswith(".png"):
             pass
@@ -93,12 +95,17 @@ def main():
             y1 = y + canvas.winfo_height()
             ImageGrab.grab().crop((x, y, x1, y1)).save(painting)
             messagebox.showinfo("Saved", "Your painting has been saved")
-    
-    def open_painting(): 
-        # painting = filedialog.askopenfilename(initialdir=r'C:\Users\oseni haruna\OneDrive\Pictures\painting', filetypes=(("png files", "*.png"), ("all files", "*.*")))
 
-        # if painting:
-            
+    def open_painting():
+        global image_opened
+        image_opened = filedialog.askopenfilename(initialdir=r'C:\Users\oseni haruna\OneDrive\Pictures\painting', filetypes=(
+            ("png files", "*.png"), ("all files", "*.*")))
+        if image_opened:
+            img = Image.open(image_opened)
+            img = img.resize((700, 700), Image.ANTIALIAS)
+            img = ImageTk.PhotoImage(img)
+            canvas.image = img
+            canvas.create_image(0, 0, image=img, anchor="nw")
 
         # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
@@ -142,6 +149,7 @@ def main():
     canvas = Canvas(main_page, width=680, height=500,
                     bg='white', borderwidth=2, relief='ridge')
     canvas.place(anchor="n", relx=0.5, rely=0.12, width=680, height=600)
+
     canvas.bind("<B1-Motion>", paint)
 
     # brush_type_frame
