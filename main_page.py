@@ -1,13 +1,12 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter import messagebox, colorchooser
-from PIL import ImageTk, Image
+from tkinter import messagebox, colorchooser, filedialog
+from PIL import ImageTk, Image, ImageDraw, ImageGrab
 from database import Database
 
 # brush_color
 brush_color = 'black'
 canvas_color = 'white'
-undo_list = []
 
 
 def main():
@@ -76,10 +75,30 @@ def main():
         brush_color = canvas_color
 
     def undo_last_stroke():
-        global undo_list
         last_item = canvas.find_all()[-1]
-        undo_list.append(last_item)
         canvas.delete(last_item)
+
+    def save_painting():
+        painting = filedialog.asksaveasfilename(initialdir=r'C:\Users\oseni haruna\OneDrive\Pictures\painting', filetypes=(("png files", "*.png"), ("all files", "*.*")))
+
+        if painting.endswith(".png"):
+            pass
+        else:
+            painting += ".png"
+
+        if painting:
+            x = main_page.winfo_rootx() + canvas.winfo_x()
+            y = main_page.winfo_rooty() + canvas.winfo_y()
+            x1 = x + canvas.winfo_width()
+            y1 = y + canvas.winfo_height()
+            ImageGrab.grab().crop((x, y, x1, y1)).save(painting)
+            messagebox.showinfo("Saved", "Your painting has been saved")
+    
+    def open_painting(): 
+        # painting = filedialog.askopenfilename(initialdir=r'C:\Users\oseni haruna\OneDrive\Pictures\painting', filetypes=(("png files", "*.png"), ("all files", "*.*")))
+
+        # if painting:
+            
 
         # top frame tools for painting
     paint_btn = PhotoImage(file="icon/pencil.png")
@@ -112,11 +131,11 @@ def main():
     clear_img_button.place(x=445, y=11)
     import_btn = PhotoImage(file="icon/import.png")
     import_img_button = Button(
-        top_frame, image=import_btn, bg="#E1E8ED", command="function")
+        top_frame, image=import_btn, bg="#E1E8ED", command=open_painting)
     import_img_button.place(x=500, y=11, width=80)
     save_btn = PhotoImage(file="icon/save.png")
     save_img_button = Button(
-        top_frame, image=save_btn, bg="#E1E8ED", command="function")
+        top_frame, image=save_btn, bg="#E1E8ED", command=save_painting)
     save_img_button.place(x=590, y=11, width=80)
 
     # canvas for artist to paint
